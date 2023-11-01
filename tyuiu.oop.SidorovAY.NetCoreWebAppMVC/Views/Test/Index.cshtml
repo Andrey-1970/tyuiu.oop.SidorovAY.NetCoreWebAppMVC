@@ -1,8 +1,25 @@
-﻿@*
+﻿@model IEnumerable<tyuiu.oop.SidorovAY.NetCoreWebAppMVC.Models.PersonMix>
+
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
 <div>
     <h1>Test page</h1>
+    <ul>
+    @foreach(var person in Model)
+    {
+            <li>
+                <div class="btn btn-danger">@person.Name</div>
+                <div class="btn btn-dark">@person.OtherName</div>
+                <ul>
+                    @foreach(var child in person.Children)
+                    {
+                        <li>@child?.Name</li>
+                    }
+                </ul>
+            </li>
+    }
+    </ul>
 </div>
