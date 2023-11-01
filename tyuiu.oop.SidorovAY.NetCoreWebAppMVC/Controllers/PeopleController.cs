@@ -21,13 +21,13 @@ namespace tyuiu.oop.SidorovAY.NetCoreWebAppMVC.Controllers
         // GET: People
         public async Task<IActionResult> Index()
         {
-              return _context.Persons != null ? 
+            return _context.Persons != null ? 
                           View(await _context.Persons.ToListAsync()) :
                           Problem("Entity set 'MyDBContext.Persons'  is null.");
         }
 
         // GET: People/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id, string val)
         {
             if (id == null || _context.Persons == null)
             {

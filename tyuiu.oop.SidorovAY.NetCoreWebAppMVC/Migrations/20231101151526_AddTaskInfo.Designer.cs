@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using tyuiu.oop.SidorovAY.NetCoreWebAppMVC.DataModels;
 
@@ -10,9 +11,11 @@ using tyuiu.oop.SidorovAY.NetCoreWebAppMVC.DataModels;
 namespace tyuiu.oop.SidorovAY.NetCoreWebAppMVC.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    partial class MyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20231101151526_AddTaskInfo")]
+    partial class AddTaskInfo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.12");
