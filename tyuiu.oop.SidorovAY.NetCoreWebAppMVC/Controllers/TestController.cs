@@ -14,16 +14,30 @@ namespace tyuiu.oop.SidorovAY.NetCoreWebAppMVC.Controllers
         }
         public IActionResult Index()
         {
-            var persons = from person in _context.Persons
-                          from otherperson in _context.Persons
-                          where person.Id == otherperson.Id
-                             && person.Parent == null
-                          select new PersonMix
-                          {
-                              Name = person.Name,
-                              OtherName = otherperson.Name,
-                              Children = person.Children
-                          };
+            //var persons = from r in (
+            //                  from person in _context.Persons
+            //                  from otherperson in _context.Persons
+            //                  where person.Id == otherperson.Id
+            //                     && person.Parent == null
+            //                  select new PersonMix
+            //                  {
+            //                      Name = person.Name,
+            //                      OtherName = otherperson.Name,
+            //                      Children = person.Children
+            //                  })
+            //              select r;
+            var persons = from r in (
+                              from person in _context.Persons
+                              where person.Parent == null
+                              join otherperson in _context.Persons on person.Id equals otherperson.Id into aa
+                              from a in aa.DefaultIfEmpty()
+                              select new PersonMix
+                              {
+                                  Name = person.Name,
+                                  OtherName = "otherperson.Name",
+                                  Children = person.Children
+                              })
+                          select r;
             return View(persons);
         }
     }
